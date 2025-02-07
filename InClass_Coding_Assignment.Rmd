@@ -5,6 +5,7 @@ date: "2025-02-06"
 output: pdf_document
 ---
 
+#functions
 ```{r}
 #make a vector 
 z <- c(1:200) 
@@ -15,13 +16,13 @@ mean(z)
 #calculate standard deviation
 sd(z)
 
-#make a new logical dataset the vector z
+#make a new logical dataset of the vector z
 zlog <- z>30
 
-#make datframe for z and z log
+#make dataframe for z and zlog
 zdf <- data.frame(z, zlog)
 
-#define column names for the columns
+#define column names for the columns of the dataframe, zdf
 colnames(zdf) <- c("zvec", "zlogic")
 
 #generating a squared zvec in a new column
@@ -36,7 +37,7 @@ subset(zdf, (zsquared > 10)&(zsquared < 100))
 #taking 26th row
 zdf [26,]
 
-#taking Zsquared value for 180th column
+#taking zsquared value for 180th column
 zdf [180,3]
 
 ```
