@@ -43,7 +43,7 @@ zdf [180,3]
 ```
 #reading data into R
 ```{r}
-datum1 <-read.csv("C:/Users/pokhr/OneDrive - Auburn University/Reproducibility/TipsR.csv")
-datum2 <-read.csv("C:/Users/pokhr/OneDrive - Auburn University/Reproducibility/TipsR.csv", na.strings = ".")
+datum1 <-read.csv("https://raw.githubusercontent.com/SachidaPokhrel/Class_Reproducibility/refs/heads/main/TipsR.csv")
+datum2 <-read.csv("https://raw.githubusercontent.com/SachidaPokhrel/Class_Reproducibility/refs/heads/main/TipsR.csv", na.strings = ".")
 ```
 
