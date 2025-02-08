@@ -29,10 +29,10 @@ colnames(zdf) <- c("zvec", "zlogic")
 zdf$zsquared <- ((zdf$zvec)^2)
 
 #subsetting the zsquared for greater than 10 and less than 100
-zdf$zsquared[(zdf$zsquared>10)&(zdf$zsquared<100)]
+zdf$zsquared[zdf$zsquared>10 & zdf$zsquared<100]
 
 #using subset function
-subset(zdf, (zsquared > 10)&(zsquared < 100))
+subset(zdf$zsquared, zdf$zsquared>10 & zdf$zsquared < 100)
 
 #taking 26th row
 zdf [26,]
