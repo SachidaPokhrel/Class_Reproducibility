@@ -2,7 +2,9 @@
 title: "02_Visualization"
 author: "Sachida Pokhrel"
 date: "2025-02-12"
-output: pdf_document
+output:
+  html_document:
+    df_print: paged
 ---
 
 
