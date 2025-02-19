@@ -6,7 +6,7 @@ output: html_document
 ---
 ```{r}
 #read the data
-Mycotoxin <- read.csv("MycotoxinData.csv", na.strings = "na")
+Mycotoxin <- read.csv("https://raw.githubusercontent.com/SachidaPokhrel/Class_Reproducibility/refs/heads/main/MycotoxinData.csv", na.strings = "na")
 
 #load library
 library(ggplot2)
@@ -71,7 +71,7 @@ ggplot(Mycotoxin, aes(Treatment, DON, fill = Cultivar))+
 ##newplot for the data
 #violin plot
 ggplot(Mycotoxin, aes(x = Treatment, y = DON, fill = Cultivar)) +
-  geom_violin(scale = "width", trim = FALSE, alpha = 0.7) + #scale width makes sure all violins for each 
+  geom_violin(scale = "width", trim = FALSE, alpha = 0.7) + #scale width makes sure all violins are of same width
    theme_classic()+
   scale_fill_manual(values = cbbPalette) +
   xlab("") +
