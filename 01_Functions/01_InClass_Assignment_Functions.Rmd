@@ -1,0 +1,56 @@
+---
+title: "01_InClass_Assignment_Functions"
+author: "Sachida Pokhrel"
+date: "2025-02-06"
+output: 
+  md_document:
+    variant: gfm
+  html_document:
+    toc: true
+    toc_float: true
+  word_document:
+  pdf_document:
+---
+
+
+## Functions
+```{r}
+#make a vector 
+z <- c(1:200) 
+
+#calculate mean 
+mean(z)
+
+#calculate standard deviation
+sd(z)
+
+#make a new logical dataset of the vector z
+zlog <- z>30
+
+#make dataframe for z and zlog
+zdf <- data.frame(z, zlog)
+
+#define column names for the columns of the dataframe, zdf
+colnames(zdf) <- c("zvec", "zlogic")
+
+#generating a squared zvec in a new column
+zdf$zsquared <- ((zdf$zvec)^2)
+
+#subsetting the zsquared for greater than 10 and less than 100
+zdf$zsquared[zdf$zsquared>10 & zdf$zsquared<100]
+
+#using subset function
+subset(zdf$zsquared, zdf$zsquared>10 & zdf$zsquared < 100)
+
+#taking 26th row
+zdf [26,]
+
+#taking zsquared value for 180th column
+zdf [180,3]
+
+```
+## Reading CSV file
+```{r}
+datum1 <-read.csv("01_Functions/TipsR.csv")
+datum2 <-read.csv("01_Functions/TipsR.csv", na.strings = ".")
+```
