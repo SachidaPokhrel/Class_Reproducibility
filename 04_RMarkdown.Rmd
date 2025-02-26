@@ -47,7 +47,8 @@ R markdown formatting options
 ## Links
 
 [Link to my github](https://github.com/SachidaPokhrel/Class_Reproducibility/)
-#[] provide the name to the link
+provide the name to the link
+
 ## Images
 ![Shrek ggplot] (shrek.jpg) # ! specifies that we want to insert image.
 
