@@ -43,6 +43,7 @@ DON <- ggplot(Mycotoxin, aes(x = Treatment,
   ylab("DON (ppm)")+
   facet_wrap(~Cultivar)
 #facet wrap according to the Cultivar, here I didnot use scale free since all all the plot space is used.
+DON
 ```
 ## Plot X15ADON
 ```{r X15ADON}
@@ -60,6 +61,7 @@ X15ADON <- ggplot(Mycotoxin, aes(Treatment,
   xlab("")+
   ylab("15ADON")+
   facet_wrap(~Cultivar)
+X15ADON
 ```
 
 ## Plot Seed mass
@@ -77,6 +79,7 @@ Seedmass <- ggplot(Mycotoxin, aes(Treatment,
   xlab("")+
   ylab("Seed Mass (mg)")+
   facet_wrap(~Cultivar)
+Seedmass
 ```
 
 ## Combine plots

@@ -33,9 +33,17 @@ DON <- ggplot(Mycotoxin, aes(x = Treatment,
   ylab("DON (ppm)")+
   facet_wrap(~Cultivar)
 #facet wrap according to the Cultivar, here I didnot use scale free since all all the plot space is used.
+DON
 ```
 
-## Plot X15ADON
+    ## Warning: Removed 8 rows containing non-finite outside the scale range
+    ## (`stat_boxplot()`).
+
+    ## Warning: Removed 8 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+![](04_InClass_Assignment_RMarkdown_files/figure-gfm/DON-1.png)<!-- -->
+\## Plot X15ADON
 
 ``` r
 #making y-axis as 15ADON 
@@ -52,7 +60,16 @@ X15ADON <- ggplot(Mycotoxin, aes(Treatment,
   xlab("")+
   ylab("15ADON")+
   facet_wrap(~Cultivar)
+X15ADON
 ```
+
+    ## Warning: Removed 10 rows containing non-finite outside the scale range
+    ## (`stat_boxplot()`).
+
+    ## Warning: Removed 10 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+![](04_InClass_Assignment_RMarkdown_files/figure-gfm/X15ADON-1.png)<!-- -->
 
 ## Plot Seed mass
 
@@ -70,7 +87,16 @@ Seedmass <- ggplot(Mycotoxin, aes(Treatment,
   xlab("")+
   ylab("Seed Mass (mg)")+
   facet_wrap(~Cultivar)
+Seedmass
 ```
+
+    ## Warning: Removed 2 rows containing non-finite outside the scale range
+    ## (`stat_boxplot()`).
+
+    ## Warning: Removed 2 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+![](04_InClass_Assignment_RMarkdown_files/figure-gfm/Seed%20mass-1.png)<!-- -->
 
 ## Combine plots
 
