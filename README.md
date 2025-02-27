@@ -14,11 +14,10 @@ These are the links to the code used in the class to learn R that is viewable on
 - [Coding_Challenge_4](Coding_Challenge_4/04_InClass_Assignment_RMarkdown.md)
 
 ## File Tree
-#install.packages("fs") #package required
-#library(fs) #load library
+#install.packages("fs")
+#library(fs)
 
 fs::dir_tree()
-
 
 
 
