@@ -1,8 +1,10 @@
 # Class_Reproducibility
 This is the repository for Class
 
-## Links to the analysis
+#DOI
+[![DOI](https://zenodo.org/badge/928568416.svg)](https://doi.org/10.5281/zenodo.14934310)
 
+## Links to the analysis
 These are the links to the code used in the class to learn R that is viewable on Github(.md format). 
 
 - [Functions](01_Functions/01_Functions.md)
