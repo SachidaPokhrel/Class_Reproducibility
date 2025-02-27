@@ -11,14 +11,13 @@ These are the links to the code used in the class to learn R that is viewable on
 - [Visualization-Part1](02_Visualization/02_Visualization1.md)
 - [Visualization-Part2](03_Visualization/03_Visualization2.md)
 - [RMarkdown](04_RMarkdown/04_RMarkdown.md)
+- [Coding Challenge 4](Coding Challenge 4/04_InClass_Assignment_RMarkdown.md)
 
 ## File Tree
 #install.packages("fs") #package required
 #library(fs) #load library
 
-```r
 fs::dir_tree()
-```
 
 
 
@@ -97,6 +96,10 @@ fs::dir_tree()
 │           ├── Include figures-1.png
 │           └── pressure-1.png
 ├── Class_Reproducibility.Rproj                    #Top level .Rproj file = working directory
+├── Coding Challenge 4                             #Forth week In-Class Assignment 
+│   ├── 04_InClass_Assignment_RMarkdown.md         #Github formatted markdown for In-Class Assignment_04
+│   ├── 04_InClass_Assignment_RMarkdown.pdf        #knitted file in pdf for InClass Assignment_04
+│   └── 04_InClass_Assignment_RMarkdown.Rmd        #Rmd codes for In-Class Assignment_04
 └── README.md                                      #Top level directory README
 
 ```
