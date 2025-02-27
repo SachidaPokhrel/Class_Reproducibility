@@ -1,7 +1,7 @@
 # Class_Reproducibility
 This is the repository for Class
 
-# DOI
+## DOI
 [![DOI](https://zenodo.org/badge/928568416.svg)](https://doi.org/10.5281/zenodo.14934310)
 
 ## Links to the analysis
