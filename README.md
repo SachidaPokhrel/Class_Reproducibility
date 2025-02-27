@@ -88,10 +88,6 @@ fs::dir_tree()
 │   ├── BacterialAlpha.csv                         #Raw data for coding assignment_03
 │   ├── diff_abund.csv                             #Raw data for coding assignment_03
 │   └── MycotoxinData.csv                          #Raw data for In-Class Assignment_03
-├── 04_InClass_Assignment_RMarkdown_files          #figure files for In-Class Assignment_04
-│   ├── figure-gfm
-│   │   └── Combine all the plots using ggarrange-1.png
-│   └── figure-latex
 ├── 04_RMarkdown                                   #Forth week class on R markdown 
 │   ├── 04_RMarkdown.md                            #Github formatted markdown
 │   ├── 04_RMarkdown.Rmd                           #Rmd codes for 04_RMarkdown
@@ -104,6 +100,13 @@ fs::dir_tree()
 │   ├── 04_InClass_Assignment_RMarkdown.md         #Github formatted markdown for In-Class Assignment_04
 │   ├── 04_InClass_Assignment_RMarkdown.pdf        #knitted file in pdf for InClass Assignment_04
 │   └── 04_InClass_Assignment_RMarkdown.Rmd        #Rmd codes for In-Class Assignment_04
+│   └── 04_InClass_Assignment_RMarkdown_files      #Figure files for In-Class Assignment_04
+│       ├── figure-gfm
+│       │   ├── Combine all the plots using ggarrange-1.png
+│       │   ├── DON-1.png
+│       │   ├── Seed mass-1.png
+│       │   └── X15ADON-1.png
+│       └── figure-latex
 └── README.md                                      #Top level directory README
 
 ```
