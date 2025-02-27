@@ -81,3 +81,8 @@ kable(mtcars, digits = 3, format = "markdown") # kable brings table and digits 3
 | Ferrari Dino        | 19.7 |   6 | 145.0 | 175 | 3.62 | 2.770 | 15.50 |   0 |   1 |    5 |    6 |
 | Maserati Bora       | 15.0 |   8 | 301.0 | 335 | 3.54 | 3.570 | 14.60 |   0 |   1 |    5 |    8 |
 | Volvo 142E          | 21.4 |   4 | 121.0 | 109 | 4.11 | 2.780 | 18.60 |   1 |   1 |    4 |    2 |
+
+## Link to repository with file tree and DOI
+
+[Link to
+repository](https://github.com/SachidaPokhrel/Class_Reproducibility?tab=readme-ov-file)
