@@ -1,0 +1,200 @@
+---
+title: "05_DataWrangling"
+author: "Sachida Pokhrel"
+date: "2025-03-19"
+output: 
+  md_document:
+  variant: gfm
+---
+
+Data wrangling is the idea of manipulating and handling large amount of messy data.
+```{r}
+library(tidyverse) #It is a bunch of packages and loads-in 8 different packages
+#same people who made Rstudio made tidyverse
+
+```
+
+#some functions covered:
+mutate()
+select()
+filter()
+pipe %>%
+summarise()
+group_by()
+joining
+pivoting
+Integration with plotting
+
+```{r}
+#load data
+microbiome.fungi <- read.csv("05_DataWrangling/Bull_richness.csv", na.strings = "na")
+#look structure of data
+str(microbiome.fungi)
+```
+## Using select() function
+Select help to select only the certain column of your data that you want to use for analysis. ":" is used to specify the range of columns in between the two mentioned with it.
+```{r}
+microbiome.fungi2 <- select(microbiome.fungi, SampleID, Crop, Compartment:Fungicide, richness)
+```
+
+## Using filter() function
+to subset data
+```{r}
+head(filter(microbiome.fungi2, Treatment == "Conv."))
+
+#A more complex using "&"
+head(filter(microbiome.fungi2, Treatment == "Conv." & Fungicide == "C"))
+
+#Another more complex using or "|"
+head(filter(microbiome.fungi2, Sample == "A"| Sample == "B")) #sample A or B
+```
+## Using mutate() function
+allows to quickly create new columns
+```{r}
+#Create new column called logRich
+head(mutate(microbiome.fungi2, logRich = log(richness)))
+#using base R
+microbiome.fungi2$logRich <- log(microbiome.fungi2$richness)
+
+#Creating a new colum which combines Crop and Treatment
+head(mutate(microbiome.fungi2, Crop_Treatment = paste(Crop, Treatment)))
+```
+## Using pipe %>% function
+Very useful and important for alot of things
+It combines output for one function (from right side of pipe) to input for another function (in the left of pipe). It helps to visualize what you are doing to your data in each step.
+It doesnot necessarily create column in the original dataset, just manipulate data till running analysis in a way we want it to.
+
+```{r}
+microbiome.fungi %>%
+  select(SampleID, Crop, Compartment:Fungicide, richness) %>%
+  filter(Treatment == "Conv.") %>% 
+  mutate(logRich = log(richness)) %>% 
+  head()
+```
+
+## Using summarise() function
+To find means, standard deviations/errors
+```{r}
+microbiome.fungi %>% 
+  select(SampleID, Crop, Compartment:Fungicide, richness) %>%
+  filter(Treatment == "Conv.") %>% 
+  mutate(logRich = log(richness)) %>% 
+  summarise(Mean.Rich = mean(logRich))#calculate the overall mean of log richness within the selected treatment
+```
+We can also combine multiple summary statistics
+```{r}
+microbiome.fungi %>% 
+  select(SampleID, Crop, Compartment:Fungicide, richness) %>%
+  filter(Treatment == "Conv.") %>% 
+  mutate(logRich = log(richness)) %>% 
+  summarise(Mean.Rich = mean(logRich),
+            n = n(),
+            sd.dev = sd(logRich)) %>% # n() counts number of rows, sd calculate standard deviation and store in the object sd.dev
+  mutate(std.err = sd.dev/sqrt(n)) #add new column for standard error
+#trick:  select the section till where you want to see the pipe function working
+```
+
+## Using group_by() function
+to summarise the statistics according to the groupt you want to see.
+```{r}
+microbiome.fungi %>% 
+  select(SampleID, Crop, Compartment:Fungicide, richness) %>%
+  group_by(Treatment, Fungicide) %>% #grouping by treatment and fungicide to later calculate summary stats
+  mutate(logRich = log(richness)) %>% 
+  summarise(Mean.Rich = mean(logRich),
+            n = n(),
+            sd.dev = sd(logRich)) %>% 
+  mutate(std.err = sd.dev/sqrt(n))
+
+```
+
+## Connecting to plotting
+We can integrate all the above function in ggplot itself using pipe, and we could use the seleced/mutated/grouped data into the plot where we would not have to mention data frame
+```{r}
+microbiome.fungi %>% 
+  select(SampleID, Crop, Compartment:Fungicide, richness) %>%
+  group_by(Treatment, Fungicide) %>% #grouping by treatment and fungicide to later calculate summary stats
+  mutate(logRich = log(richness)) %>% 
+  summarise(Mean.Rich = mean(logRich),
+            n = n(),
+            sd.dev = sd(logRich)) %>% 
+  mutate(std.err = sd.dev/sqrt(n)) %>% 
+  ggplot(aes(x = Fungicide, y = Mean.Rich)) + #adding the function to ggplot
+  geom_bar(stat = "identity") +
+  geom_errorbar(aes(x= Fungicide, ymin= Mean.Rich-std.err, ymax = Mean.Rich+std.err), width = 0.4) +
+  theme_minimal() +
+  xlab("")+
+  ylab("log Richness") +
+  facet_wrap(~Treatment)
+```
+
+## Joining
+The join group of functions are super useful. Have you ever tried to match up data by rows based on some criteria? It's almost impossible to mess up over 10-15 rows of data.
+
+More info can be found here: https://dplyr.tidyverse.org/reference/mutate-joins.htmlLinks to an external site.
+
+But we can easily do this with the joining functions. They include:
+
+- left_join() - Keep all rows of X and add matching rows from Y. Any rows in Y that don’t match X are excluded.
+
+- right_join() - reverse of left_join() 
+- inner_join() - only keep rows that are common to both X AND Y, remove everything else. 
+- full_join() - Keep any columns that are in either X or Y
+
+To try these out, let's split our data into separate sets, including taxonomy and metadata.
+
+Here we are also randomly sampling 100 different samples using "sample_n()" function
+```{r}
+# selecting just the richness and sample ID
+richness <- microbiome.fungi %>%
+  select(SampleID, richness)
+
+# selecting columns that don't include the richness
+metadata <- microbiome.fungi %>% 
+  select(SampleID, Fungicide, Crop, Compartment, GrowthStage, Treatment, Rep, Sample)
+
+head(metadata)
+head(richness)
+
+head(left_join(metadata, richness, by = "SampleID")) # adding the richness data to the metadata based on the column od sample ID
+```
+
+## Pivoting
+Pivoting is also useful for converting from wide to long format and back again. We can do this with pivot_longer() and pivot_wider()
+
+More info can be found here: https://tidyr.tidyverse.org/reference/pivot_wider.htmlLinks to an external site.
+
+I will demonstrate pivot_wider() assuming that most data is already formatted as long data. Lets explore turning our data set into a wide format, since its in long format.
+```{r}
+microbiome.fungi %>% 
+  select(SampleID, Crop, Compartment:Fungicide, richness) %>%
+  group_by(Treatment, Fungicide) %>% #grouping by treatment and fungicide to later calculate summary stats
+  mutate(logRich = log(richness)) %>% 
+  summarise(Mean = mean(richness))
+```
+### Wide format 
+- sets the values within fungicide column into column names
+- Easily can take the difference bewteen the fungicide and control now
+```{r}
+microbiome.fungi %>% 
+  select(SampleID, Crop, Compartment:Fungicide, richness) %>%
+  group_by(Treatment, Fungicide) %>% #grouping by treatment and fungicide to later calculate summary stats
+  mutate(logRich = log(richness)) %>% 
+  summarise(Mean = mean(richness)) %>% 
+  pivot_wider(names_from = Fungicide, values_from = Mean) 
+```
+- We can integrate the difference into the plot too
+```{r}
+microbiome.fungi %>%
+  select(SampleID, Crop, Compartment:Fungicide, richness) %>% 
+  group_by(Treatment, Fungicide) %>% 
+  summarise(Mean = mean(richness)) %>% 
+  pivot_wider(names_from = Fungicide, values_from = Mean) %>% 
+  mutate(diff.fungicide = C - F) %>%  # calculate the difference between the means. 
+  ggplot(aes(x = Treatment, y = diff.fungicide)) + # Plot it 
+  geom_col() +
+  theme_minimal() +
+  xlab("") +
+  ylab("Difference in average species richness")
+```
+
