@@ -3,8 +3,9 @@ title: "05_DataWrangling"
 author: "Sachida Pokhrel"
 date: "2025-03-19"
 output: 
+  html_document:
   md_document:
-  variant: gfm
+   variant: gfm
 ---
 
 Data wrangling is the idea of manipulating and handling large amount of messy data.
