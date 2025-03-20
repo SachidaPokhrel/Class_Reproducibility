@@ -3,11 +3,12 @@ title: "05_InClass_Assignment_DataWrangling"
 author: "Sachida Pokhrel"
 date: "2025-03-20"
 output: 
+  html_document:
   md_document:
     variant: gfm
-  html_document:
 ---
-### Read Data
+### Question 1. 
+Read Data
 ```{r Read Data and load library}
 #load data
 Metadata <- read.csv("05_DataWrangling/Metadata.csv", na.strings = "na")
@@ -15,17 +16,20 @@ DiversityData <- read.csv("05_DataWrangling/DiversityData.csv", na.strings = "na
 #load library
 library(tidyverse)
 ```
-### Combine two dataset with one common column "Code"
+### Question 2. 
+Combine two dataset with one common column "Code"
 ```{r Using left_join}
 alpha <- left_join(Metadata, DiversityData, by = "Code")
 ```
 
-### Calculate Pielou's evenness index: Shannon/log(richness)
+### Question 3. 
+Calculate Pielou's evenness index: Shannon/log(richness)
 ```{r using mutate}
 alpha_even = mutate(alpha, even = shannon/log(richness))
 ```
 
-### Use mutate function to make a new dataset with summarise function and piping in tidyverse
+### Question 4. 
+Use mutate function to make a new dataset with summarise function and piping in tidyverse
 ```{r Grouping and summarising}
 alpha_average <- alpha_even %>% 
   group_by(Crop, Time_Point) %>% 
@@ -36,7 +40,8 @@ alpha_average <- alpha_even %>%
 alpha_average
 ```
 
-### Calculate the difference between the soybean column, the soil column, and the difference between the cotton column and the soil column
+### Question 5. 
+Calculate the difference between the soybean column, the soil column, and the difference between the cotton column and the soil column
 ```{r Selecting certain column and making dataset wider and calculating difference}
 alpha_average2 <- alpha_average %>% 
   select(Time_Point, Crop, mean.even) %>% 
@@ -45,7 +50,8 @@ alpha_average2 <- alpha_average %>%
   mutate(diff.soybean.even = Soil - Soybean)
 ```
 
-### Integrating the data into plot after converting the data into the longer version for the differences
+### Question 6. 
+Integrating the data into plot after converting the data into the longer version for the differences
 ```{r Making datset longer format and integrating into the plot}
 #load library
 library(ggplot2)
@@ -59,7 +65,8 @@ alpha_average2 %>%
   theme_classic()
 ```
 
-### Push to github
+### Question 7.
+#### Push to github
 ##### The folder is **05_DataWrangling** and the assignment has the file name **InClass_Assignment_DataWrangling.md**
 
 [Link to my GitHub](https://github.com/SachidaPokhrel/Class_Reproducibility/tree/main)

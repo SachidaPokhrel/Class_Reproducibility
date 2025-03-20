@@ -1,4 +1,6 @@
-### Read Data
+### Question 1.
+
+Read Data
 
 ``` r
 #load data
@@ -19,19 +21,26 @@ library(tidyverse)
     ## ✖ dplyr::lag()    masks stats::lag()
     ## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
 
-### Combine two dataset with one common column “Code”
+### Question 2.
+
+Combine two dataset with one common column “Code”
 
 ``` r
 alpha <- left_join(Metadata, DiversityData, by = "Code")
 ```
 
-### Calculate Pielou’s evenness index: Shannon/log(richness)
+### Question 3.
+
+Calculate Pielou’s evenness index: Shannon/log(richness)
 
 ``` r
 alpha_even = mutate(alpha, even = shannon/log(richness))
 ```
 
-### Use mutate function to make a new dataset with summarise function and piping in tidyverse
+### Question 4.
+
+Use mutate function to make a new dataset with summarise function and
+piping in tidyverse
 
 ``` r
 alpha_average <- alpha_even %>% 
@@ -66,7 +75,10 @@ alpha_average
     ## 11 Soybean         12     0.687     6 0.0643  0.0263 
     ## 12 Soybean         18     0.716     6 0.0153  0.00626
 
-### Calculate the difference between the soybean column, the soil column, and the difference between the cotton column and the soil column
+### Question 5.
+
+Calculate the difference between the soybean column, the soil column,
+and the difference between the cotton column and the soil column
 
 ``` r
 alpha_average2 <- alpha_average %>% 
@@ -76,7 +88,10 @@ alpha_average2 <- alpha_average %>%
   mutate(diff.soybean.even = Soil - Soybean)
 ```
 
-### Integrating the data into plot after converting the data into the longer version for the differences
+### Question 6.
+
+Integrating the data into plot after converting the data into the longer
+version for the differences
 
 ``` r
 #load library
@@ -93,7 +108,9 @@ alpha_average2 %>%
 
 ![](05_InClass_Assignment_DataWrangling_files/figure-gfm/Making%20datset%20longer%20format%20and%20integrating%20into%20the%20plot-1.png)<!-- -->
 
-### Push to github
+### Question 7.
+
+#### Push to github
 
 ##### The folder is **05_DataWrangling** and the assignment has the file name **InClass_Assignment_DataWrangling.md**
 
