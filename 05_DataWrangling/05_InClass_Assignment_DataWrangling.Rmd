@@ -1,0 +1,67 @@
+---
+title: "05_InClass_Assignment_DataWrangling"
+author: "Sachida Pokhrel"
+date: "2025-03-20"
+output: 
+  md_document:
+    variant: gfm
+  html_document:
+---
+### Read Data
+```{r Read Data and load library}
+#load data
+Metadata <- read.csv("05_DataWrangling/Metadata.csv", na.strings = "na")
+DiversityData <- read.csv("05_DataWrangling/DiversityData.csv", na.strings = "na")
+#load library
+library(tidyverse)
+```
+### Combine two dataset with one common column "Code"
+```{r Using left_join}
+alpha <- left_join(Metadata, DiversityData, by = "Code")
+```
+
+### Calculate Pielou's evenness index: Shannon/log(richness)
+```{r using mutate}
+alpha_even = mutate(alpha, even = shannon/log(richness))
+```
+
+### Use mutate function to make a new dataset with summarise function and piping in tidyverse
+```{r Grouping and summarising}
+alpha_average <- alpha_even %>% 
+  group_by(Crop, Time_Point) %>% 
+  summarise(mean.even = mean(even),
+            n = n(),
+            sd.dev=sd(even)) %>% 
+  mutate(std.err = sd.dev/sqrt(n))
+alpha_average
+```
+
+### Calculate the difference between the soybean column, the soil column, and the difference between the cotton column and the soil column
+```{r Selecting certain column and making dataset wider and calculating difference}
+alpha_average2 <- alpha_average %>% 
+  select(Time_Point, Crop, mean.even) %>% 
+  pivot_wider(names_from = Crop, values_from = mean.even) %>% 
+  mutate(diff.cotton.even = Soil - Cotton) %>% 
+  mutate(diff.soybean.even = Soil - Soybean)
+```
+
+### Integrating the data into plot after converting the data into the longer version for the differences
+```{r Making datset longer format and integrating into the plot}
+#load library
+library(ggplot2)
+alpha_average2 %>% 
+  select(Time_Point, diff.cotton.even, diff.soybean.even) %>% 
+  pivot_longer(c(diff.cotton.even, diff.soybean.even), names_to = "diff") %>% 
+  ggplot(aes(x=Time_Point, y=value, color = diff))+
+  geom_line(stat = "identity")+
+  xlab("Time (hrs)")+
+  ylab("Difference from soil in Pielou's evenness")+
+  theme_classic()
+```
+
+### Push to github
+##### The folder is **05_DataWrangling** and the assignment has the file name **InClass_Assignment_DataWrangling.md**
+
+[Link to my GitHub](https://github.com/SachidaPokhrel/Class_Reproducibility/tree/main)
+
+
