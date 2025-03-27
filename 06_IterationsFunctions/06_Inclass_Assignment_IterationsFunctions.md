@@ -1,7 +1,7 @@
 ### Question 1.
 
 **Regarding reproducibility, what is the main point of writing your own
-functions and iterations? **
+functions and iterations?**
 
 **Answer:** While copy pasting the code, it is very cumbersome sometimes
 and also might cause the copy paste error in the code making it
@@ -79,9 +79,10 @@ Haversine(1,2,3,4)
 ### Question 5.
 
 **Using your function, compute the distance between Auburn, AL and New
-York City** a. Subset/filter the Cities.csv data to include only the
-latitude and longitude values you need and input as input to your
-function.
+York City**
+
+1.  Subset/filter the Cities.csv data to include only the latitude and
+    longitude values you need and input as input to your function.
 
 ``` r
 #Load library

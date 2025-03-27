@@ -3,15 +3,15 @@ title: "06_InClass_Assignment_IterationsFunctions"
 author: "Sachida Pokhrel"
 date: "2025-03-26"
 output: 
-  md_document:
-    variant: gfm
   html_document:
     toc: TRUE
     toc_float: TRUE
+  md_document:
+    variant: gfm
 ---
 
 ### Question 1.
-**Regarding reproducibility, what is the main point of writing your own functions and iterations? **
+**Regarding reproducibility, what is the main point of writing your own functions and iterations?**
 
 **Answer:** 
 While copy pasting the code, it is very cumbersome sometimes and also might cause the copy paste error in the code making it difficult to make it reporducible. The function is created to reiterate the same operation over different input values. Creating iteration of the function help us to loop over the same function over and over without causing manual error.
@@ -64,6 +64,7 @@ Haversine(1,2,3,4)
 
 ### Question 5.
 **Using your function, compute the distance between Auburn, AL and New York City**
+
 a.	Subset/filter the Cities.csv data to include only the latitude and longitude values you need and input as input to your function. 
 ```{r}
 #Load library
