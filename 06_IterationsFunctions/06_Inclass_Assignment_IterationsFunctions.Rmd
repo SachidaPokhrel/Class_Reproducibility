@@ -14,7 +14,7 @@ output:
 **Regarding reproducibility, what is the main point of writing your own functions and iterations?**
 
 **Answer:** 
-While copy pasting the code, it is very cumbersome sometimes and also might cause the copy paste error in the code making it difficult to make it reporducible. The function is created to reiterate the same operation over different input values. Creating iteration of the function help us to loop over the same function over and over without causing manual error.
+While copy pasting the code, it is very cumbersome sometimes and also might cause the copy paste error in the code making it difficult to make it reproducible. The function is created to apply command on the object of interest. Iteration help to reiterate the same operation over different input values. Creating iteration of the function help us to loop over the same function over and over without causing manual error.
 
 ### Question 2.
 **In your own words, describe how to write a function and a for loop in R and how they work. Give me specifics like syntax, where to write code, and how the results are returned.**
@@ -74,6 +74,7 @@ cities1 <- cities %>%
 select(city, lat, long) %>% 
 subset(cities$city == c("New York", "Auburn")) %>%
  summarise(distance_km = Haversine(lat[city=="New York"], long[city =="New York"], lat[city =="Auburn"], long[city == "Auburn"]))
+cities1
 
 #Alternatively modify the function itself without subsetting data and use it in the dataframe
 Haversine1 <- function(input){

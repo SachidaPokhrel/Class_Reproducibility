@@ -107,7 +107,13 @@ cities1 <- cities %>%
 select(city, lat, long) %>% 
 subset(cities$city == c("New York", "Auburn")) %>%
  summarise(distance_km = Haversine(lat[city=="New York"], long[city =="New York"], lat[city =="Auburn"], long[city == "Auburn"]))
+cities1
+```
 
+    ##   distance_km
+    ## 1    1367.854
+
+``` r
 #Alternatively modify the function itself without subsetting data and use it in the dataframe
 Haversine1 <- function(input){
   rad.lat1 <- input$lat[input$city == "New York"] * pi/180
