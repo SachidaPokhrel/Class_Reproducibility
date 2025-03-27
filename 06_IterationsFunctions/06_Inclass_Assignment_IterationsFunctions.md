@@ -223,4 +223,4 @@ The folder is **06_IterationsFunctions** and file is
 **06_InClass_Assignment_IterationsFunctions.md**
 
 [Link to my
-Github](06_IterationsFunctions/06_InClass_Assignment_IterationsFunctions.md)
+Github](06_IterationsFunctions/06_Inclass_Assignment_IterationsFunctions.md)
