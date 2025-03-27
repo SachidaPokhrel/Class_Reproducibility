@@ -3,11 +3,11 @@ title: "06_InClass_Assignment_IterationsFunctions"
 author: "Sachida Pokhrel"
 date: "2025-03-26"
 output: 
-  md_document:
-    variant: gfm
   html_document:
     toc: TRUE
     toc_float: TRUE
+  md_document:
+    variant: gfm
 ---
 
 ### Question 1.
@@ -129,7 +129,7 @@ Commit and push a gfm .md file to GitHub inside a directory called Coding Challe
 
 The folder is **06_IterationsFunctions** and file is **06_Inclass_Assignment_IterationsFunctions.md** 
 
-[Link to my Github](06_IterationsFunctions/06_Inclass_Assignment_IterationsFunctions.md)
+[Link to my Github](https://github.com/SachidaPokhrel/Class_Reproducibility/tree/main)
 
 
 

@@ -220,7 +220,7 @@ Coding Challenge 6. Provide me a link to your github written as a
 clickable link in your .pdf or .docx
 
 The folder is **06_IterationsFunctions** and file is
-**06_InClass_Assignment_IterationsFunctions.md**
+**06_Inclass_Assignment_IterationsFunctions.md**
 
 [Link to my
-Github](06_IterationsFunctions/06_Inclass_Assignment_IterationsFunctions.md)
+Github](https://github.com/SachidaPokhrel/Class_Reproducibility/tree/main)
