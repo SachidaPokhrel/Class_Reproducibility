@@ -3,11 +3,11 @@ title: "06_InClass_Assignment_IterationsFunctions"
 author: "Sachida Pokhrel"
 date: "2025-03-26"
 output: 
+  md_document:
+    variant: gfm
   html_document:
     toc: TRUE
     toc_float: TRUE
-  md_document:
-    variant: gfm
 ---
 
 ### Question 1.
@@ -120,6 +120,7 @@ for (i in seq_along(cities$city)) {
           city2 = cities$city[cities$city == "Auburn"],
           distance_km = a))
 }
+head(compare)
 
 ```
 

@@ -202,7 +202,16 @@ for (i in seq_along(cities$city)) {
           city2 = cities$city[cities$city == "Auburn"],
           distance_km = a))
 }
+head(compare)
 ```
+
+    ##         city1  city2 distance_km
+    ## 1    New York Auburn   1367.8540
+    ## 2 Los Angeles Auburn   3051.8382
+    ## 3     Chicago Auburn   1045.5213
+    ## 4       Miami Auburn    916.4138
+    ## 5     Houston Auburn    993.0298
+    ## 6      Dallas Auburn   1056.0217
 
 ### Question 7.
 
