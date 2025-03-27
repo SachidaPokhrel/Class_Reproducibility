@@ -5,10 +5,11 @@ functions and iterations?**
 
 **Answer:** While copy pasting the code, it is very cumbersome sometimes
 and also might cause the copy paste error in the code making it
-difficult to make it reporducible. The function is created to reiterate
-the same operation over different input values. Creating iteration of
-the function help us to loop over the same function over and over
-without causing manual error.
+difficult to make it reproducible. The function is created to apply
+command on the object of interest. Iteration help to reiterate the same
+operation over different input values. Creating iteration of the
+function help us to loop over the same function over and over without
+causing manual error.
 
 ### Question 2.
 
@@ -36,8 +37,8 @@ using. We can use seq_along() to provide where we want to have iteration
 on by assigning it to the variable (i). We can also use rep() to provide
 the range of iteration for the dataset using baseR. Then we can start
 curly bracket paranthesis to provide the code that we need to run
-through each iteration. We can use print command to print() to print the
-data as output for each iteration.
+through each iteration. We can use print() command to print the data as
+output for each iteration.
 
 ### Question 3.
 

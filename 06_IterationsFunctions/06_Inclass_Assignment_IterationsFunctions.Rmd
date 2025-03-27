@@ -3,11 +3,11 @@ title: "06_InClass_Assignment_IterationsFunctions"
 author: "Sachida Pokhrel"
 date: "2025-03-26"
 output: 
+  md_document:
+    variant: gfm
   html_document:
     toc: TRUE
     toc_float: TRUE
-  md_document:
-    variant: gfm
 ---
 
 ### Question 1.
@@ -28,7 +28,7 @@ return(result)
 }
 (Sachi is the name of function here. (a,b) is the input data required for the function and is plugged in into the formula. After the curly bracket opens, it is the space to write the formula. return command provide what we want to output from the formula as the result of the function used.)
 
-We start with for() and we mention the iteration inside the paranthesis mentioning what that range of iteration is for the function we are using. We can use seq_along() to provide where we want to have iteration on by assigning it to the variable (i). We can also use rep() to provide the range of iteration for the dataset using baseR. Then we can start curly bracket paranthesis to provide the code that we need to run through each iteration. We can use print command to print() to print the data as output for each iteration. 
+We start with for() and we mention the iteration inside the paranthesis mentioning what that range of iteration is for the function we are using. We can use seq_along() to provide where we want to have iteration on by assigning it to the variable (i). We can also use rep() to provide the range of iteration for the dataset using baseR. Then we can start curly bracket paranthesis to provide the code that we need to run through each iteration. We can use print() command to print the data as output for each iteration. 
 
 
 
