@@ -1,0 +1,110 @@
+---
+title: "07_LinearModels"
+author: "Sachida Pokhrel"
+date: "2025-04-01"
+output: 
+  md_document:
+    variant: gfm
+  html_document:
+    toc: TRUE
+    toc_float: TRUE
+---
+
+### Linear model and Correlation test
+
+What statistics we need to know according to the data types?
+
+```{r}
+data("mtcars")
+library(ggplot2)
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_smooth(method = lm, se = FALSE, color = "grey") +
+  geom_point(aes(color = wt)) +
+  xlab("Weight") + 
+  ylab("Miles per gallon") +
+  scale_colour_gradient(low = "forestgreen", high = "black") +
+  theme_classic()
+
+lm1 <- lm(mpg~wt, data = mtcars)
+summary(lm1)
+anova(lm1)
+cor.test(mtcars$wt, mtcars$mpg) #uses Pearson's correlation in default
+
+# all test is running a linear regression in the background 
+```
+
+### Run t test on subsetted data
+```{r}
+
+ggplot(lm1, aes(y = .resid, x = .fitted)) +
+  geom_point() +
+  geom_hline(yintercept = 0)
+
+bull.rich <- read.csv("07_LinearModels/Bull_richness.csv")
+
+library(tidyverse)
+bull.rich.sub <- bull.rich %>% 
+  filter(GrowthStage == "V8" & Treatment == "Conv.")
+
+t.test(richness~Fungicide, data = bull.rich.sub)
+summary(lm(richness~Fungicide, data = bull.rich.sub))
+anova(lm(richness~Fungicide, data = bull.rich.sub))
+#In general everything is a linear model
+```
+
+### Filtering data to plot and run linear model 
+```{r}
+bull.rich.sub2 <- bull.rich %>% 
+  filter(Fungicide == "C" & Treatment == "Conv." & Crop == "Corn")
+
+ggplot(bull.rich.sub2, aes(x = GrowthStage, y = richness)) +
+  geom_boxplot()
+lm3 <-lm(richness~GrowthStage, data = bull.rich.sub2)
+summary(lm3)
+```
+
+### Using emmeans for the multiple comparison
+```{r}
+library(emmeans)
+library(multcomp)
+
+lsmeans <- emmeans(lm3, ~GrowthStage)
+
+results_lsmeans <- cld(lsmeans, alpha = 0.05, details = TRUE)
+results_lsmeans
+
+```
+
+### Interactions
+```{r}
+bull.rich.sub3 <- bull.rich %>%
+  filter(Treatment == "Conv." & Crop == "Corn")
+
+lm.interaction <- lm(richness~GrowthStage*Fungicide, data = bull.rich.sub3)
+summary(lm.interaction)
+anova(lm.interaction)
+
+lsmeans <- emmeans(lm.interaction, ~Fungicide|GrowthStage)
+results_lsmeans <- cld(lsmeans, alpha = 0.05, details = TRUE)
+results_lsmeans
+
+ggplot(bull.rich.sub3, aes(x = GrowthStage, y = richness, color = Fungicide))+
+  geom_boxplot()
+```
+
+### Mixed effect models
+```{r}
+# to generalize variation, use that variable as random effect
+library(lme4) 
+lm.interaction <- lm(richness ~ GrowthStage*Fungicide, data = bull.rich.sub3)
+lm.interaction2 <- lmer(richness ~ GrowthStage*Fungicide + (1|Rep), data = bull.rich.sub3)
+summary(lm.interaction)
+summary(lm.interaction2)
+
+lsmeans <- emmeans(lm.interaction2, ~Fungicide|GrowthStage)
+results_lsmeans <- cld(lsmeans, alpha = 0.05, details = TRUE)
+results_lsmeans
+```
+
+
+
