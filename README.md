@@ -13,6 +13,7 @@ These are the links to the code used in the class to learn R that is viewable on
 - [RMarkdown](04_RMarkdown/04_RMarkdown.md)
 - [DataWrangling](05_DataWrangling/05_DataWrangling.md)
 - [IterationsFunctions](06_IterationsFunctions/06_IterationsFunctions.md)
+- [LinearModels](07_LinearModels/07_LinearModels.md)
 
 ## File Tree
 #install.packages("fs")
